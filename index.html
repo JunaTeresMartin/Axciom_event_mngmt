@@ -1,0 +1,168 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: #1abc9c;
+            color: white;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: #e8491d 4px solid;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        main {
+            padding: 30px 0;
+            text-align: center;
+        }
+
+        select {
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+
+        #loginForms {
+            text-align: center;
+        }
+
+        form {
+            width: 50%;
+            margin: auto;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        form input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+
+        form input[type="submit"] {
+            background: #1abc9c;
+            color: white;
+            cursor: pointer;
+        }
+
+        form input[type="submit"]:hover {
+            background: #13a89e;
+        }
+
+        footer {
+            background: #1abc9c;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+
+</head>
+<body>
+    <header>
+        <h1>Event Management System</h1>
+    </header>
+
+    <main>
+        <div>
+            <h2>Login</h2>
+            <label for="userType">Select User Type:</label>
+            <select id="userType" onchange="showLoginForm()">
+                <option value="admin">Admin</option>
+                <option value="vendor">Vendor</option>
+                <option value="management">Management</option>
+            </select>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Event Management System</p>
+    </footer>
+
+    <script>
+        function showLoginForm() {
+            var userType = document.getElementById("userType").value;
+            var loginForms = document.getElementById("loginForms");
+    
+            // Reset content
+            loginForms.innerHTML = "";
+    
+            
+            switch (userType) {
+                case "admin":
+                    loginForms.innerHTML = `
+                        <form action="admin_login.php" method="post">
+                            <label for="adminEmail">Email:</label>
+                            <input type="email" id="adminEmail" name="email" required>
+                            <br>
+                            <label for="adminPassword">Password:</label>
+                            <input type="password" id="adminPassword" name="password" required>
+                            <br>
+                            <input type="submit" value="Login">
+                        </form>
+                        <p>Don't have an account? <a href="admin_signup.php">Sign Up</a></p>
+                    `;
+                    break;
+    
+                case "vendor":
+                    loginForms.innerHTML = `
+                        <form action="vendor_login.php" method="post">
+                            <label for="vendorEmail">Email:</label>
+                            <input type="email" id="vendorEmail" name="email" required>
+                            <br>
+                            <label for="vendorPassword">Password:</label>
+                            <input type="password" id="vendorPassword" name="password" required>
+                            <br>
+                            <input type="submit" value="Login">
+                        </form>
+                    `;
+                    break;
+    
+                case "management":
+                    loginForms.innerHTML = `
+                        <form action="management_login.php" method="post">
+                            <label for="managementEmail">Email:</label>
+                            <input type="email" id="managementEmail" name="email" required>
+                            <br>
+                            <label for="managementPassword">Password:</label>
+                            <input type="password" id="managementPassword" name="password" required>
+                            <br>
+                            <input type="submit" value="Login">
+                        </form>
+                    `;
+                    break;
+    
+                default:
+                    break;
+            }
+        }
+    </script>
+    
+    
+</body>
+</html>
